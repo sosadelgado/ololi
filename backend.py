@@ -31,7 +31,7 @@ def evaluate_prop(data: PropInput):
     expected_kills = used_kpr * data.map_count * 24  # assume 24 rounds/map avg
     value_score = (data.hs_line * 0.65 + (data.kill_line / data.map_count) * 0.35) - data.salary
 
-    verdict = "Good Value" if value_score >= 8:
+    verdict = "Good Value" if value_score >= 8
     results.append(prop)
 
 
@@ -43,4 +43,5 @@ def evaluate_prop(data: PropInput):
         used_hs=used_hs,
         notes="Demo calculation — integrate HLTV stats for real results."
     )
+
 
