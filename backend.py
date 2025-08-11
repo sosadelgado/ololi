@@ -67,7 +67,7 @@ def refresh_cache():
 @app.get("/")
 def root():
     """
-    Health check endpoint for the backend.
+    Root endpoint to check backend status.
     """
     return {
         "message": "Backend is live",
@@ -78,11 +78,12 @@ def root():
 @app.get("/board")
 def get_board():
     """
-    Return the latest cached board.
+    Return the latest cached board sorted by value_score (high to low).
     """
+    sorted_board = sorted(BOARD_CACHE, key=lambda x: x["value_score"], reverse=True)
     return {
         "last_updated": LAST_UPDATED,
-        "props": BOARD_CACHE
+        "props": sorted_board
     }
 
 # Start cache refresh thread
