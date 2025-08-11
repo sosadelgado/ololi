@@ -64,6 +64,17 @@ def refresh_cache():
             print("Error refreshing board:", e)
         time.sleep(CACHE_INTERVAL)
 
+@app.get("/")
+def root():
+    """
+    Health check endpoint for the backend.
+    """
+    return {
+        "message": "Backend is live",
+        "props_cached": len(BOARD_CACHE),
+        "last_updated": LAST_UPDATED
+    }
+
 @app.get("/board")
 def get_board():
     """
@@ -76,4 +87,3 @@ def get_board():
 
 # Start cache refresh thread
 threading.Thread(target=refresh_cache, daemon=True).start()
-
